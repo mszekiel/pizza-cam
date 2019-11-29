@@ -1,0 +1,39 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+#header {
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+  font-family: "Bungee", cursive;
+}
+
+#video-player {
+  display:flex;
+  align-items: center;
+}
+
+#content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: calc(100vw / 2 / 1.8);
+  margin: 10px;
+}
+
+@media (max-width: 900px) {
+  #content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  #video-player {
+    width: 100%;
+  }
+}
