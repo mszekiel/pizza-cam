@@ -5,7 +5,6 @@ body {
   padding: 0;
 }
 
-
 #header {
   text-align: center;
   margin: 0;
@@ -14,7 +13,7 @@ body {
 }
 
 #video-player {
-  display:flex;
+  display: flex;
   align-items: center;
 }
 
@@ -24,8 +23,8 @@ body {
   grid-template-rows: calc(100vw / 2 / 1.8);
   margin: 10px;
 }
-
-@media only screen and (max-width: 900px) {
+@media only screen and (max-device-width: 480px),
+  only screen and (min-device-width: 560px) and (max-device-width: 1136px) and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px) {
   #content {
     display: flex;
     flex-direction: column;

@@ -26,7 +26,6 @@ const User = props => {
 };
 
 const ChatNotification = props => {
-  console.log('asdasd', props)
   const { content } = props;
   return (
     <div className='chat__message'>

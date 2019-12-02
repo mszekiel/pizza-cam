@@ -160,14 +160,15 @@
   border-left: 5px solid black;
 }
 
-@media (max-width: 900px) {
+@media only screen and (max-device-width: 480px),
+  only screen and (min-device-width: 560px) and (max-device-width: 1136px) and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px) {
   #chat__container {
     flex-direction: column-reverse;
     margin: 10px 0;
     width: 100%;
   }
 
-  #chat__container--messages {
+  .chat__container--messages {
     flex-direction: column;
   }
 }
