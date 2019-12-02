@@ -4,6 +4,7 @@
   display: flex;
   margin: 0 10px;
   flex-direction: column;
+  font-family: "Bungee", cursive;
 }
 
 .chat__container--messages {
@@ -93,7 +94,6 @@
 }
 
 .chat__box--text {
-  font-family: "Bungee", cursive;
   line-height: 8pt;
   word-break: break-all;
 }
@@ -111,7 +111,6 @@
   border-bottom: 2px solid black;
   background-color: transparent;
   font-family: "Bungee", cursive;
-
 }
 
 #chat__containter--inputField:focus {
@@ -127,12 +126,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Bungee", cursive;
   cursor: pointer;
 }
 
-.chat__container--messageText {
-  font-family: "Bungee", cursive;
+.chat__notification--text {
+  padding: 2px;
+}
+
+.chat__notification {
+  width: 100%;
+  height: 100%;
+  border: 3px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #chat__containter--inputButton:hover {

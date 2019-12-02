@@ -3,7 +3,7 @@ const connect = (options) => {
 
     return new Promise((resolve, reject) => {
         socket.addEventListener('open', (event => {
-            socket.send('OP_IDENTIFY');
+            socket.send(JSON.stringify({ type: 'OP_IDENTIFY' }));
         }));
 
         const sendMessage = (message) => {

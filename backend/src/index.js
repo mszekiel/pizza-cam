@@ -2,7 +2,7 @@ import server from './express';
 import chat from './chat';
 import media from './media';
 
-const EXPRESS_PORT = 9080;
+const EXPRESS_PORT = 80;
 const CHAT_PORT = 2137;
 
 chat.start(CHAT_PORT);

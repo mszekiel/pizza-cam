@@ -15,7 +15,7 @@ const config = {
         mediaroot: './media'
     },
     trans: {
-        ffmpeg: 'C:/software/ffmpeg/bin/ffmpeg.exe',
+        ffmpeg: 'C:/DEV/ffmpeg/bin/ffmpeg.exe',
         tasks: [{
             app: 'live',
             hls: true,

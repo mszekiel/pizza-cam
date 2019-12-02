@@ -25,6 +25,19 @@ const User = props => {
   );
 };
 
+const ChatNotification = props => {
+  console.log('asdasd', props)
+  const { content } = props;
+  return (
+    <div className='chat__message'>
+      <div className='chat__notification'>
+        {content.user && <User userID={content.user} />}
+        <span className='chat__notification--text'>{content.message}</span>
+      </div>
+    </div>
+  )
+}
+
 const ChatMessage = props => {
   const { message, userID, activeUser } = props;
   return (
@@ -67,36 +80,51 @@ class Chat extends React.Component {
 
   instantiateWebSocket = async () => {
     socket.connect({
-      host: "ws://localhost:2137", // CHAT HOST
+      host: "ws://10.42.3.36:2137", // CHAT HOST
       onMessage: this.messageReceived,
     }).then(socket => {
       this.setState({ socket });
     });
   };
 
+  addNotification = content => {
+    this.setState({
+      messages: [
+        <ChatNotification content={content} />
+      ].concat(this.state.messages)
+    })
+  }
+
   messageReceived = message => {
+    console.log(message)
     const { type, content } = message;
-    if (type === 'MESSAGE') {
-      this.setState({
-        messages: this.state.messages.concat([
-          { userID: content.userID, message: content.message, activeUser: false }
-        ])
-      });
+    switch (type) {
+      case 'MESSAGE':
+        this.addMessage(content.message, content.userID);
+        break;
+      case 'NOTIFICATION':
+        console.log('notify')
+        this.addNotification(content);
+        break;
+      default:
+        break;
     }
   };
 
-  addMessage = message => {
-    this.state.socket.sendMessage(message);
+  addMessage = (message, userID, activeUser = false) => {
+    if (activeUser) {
+      this.state.socket.sendMessage(message);
+    }
     this.setState({
       messages: [
-        { userID: this.state.socket.userID, message, activeUser: true }
+        <ChatMessage key={uuid()} userID={userID} message={message} activeUser={activeUser} />
       ].concat(this.state.messages)
     })
   }
 
   handleMessageSend = () => {
     if (this.textInput.value !== '') {
-      this.addMessage(this.textInput.value);
+      this.addMessage(this.textInput.value, this.state.socket.userID, true);
       this.textInput.value = '';
     }
   }
@@ -106,15 +134,15 @@ class Chat extends React.Component {
     return (
       <div id="chat__container">
         <div className="chat__container--offline" />
-        <div className="chat__container--messages ">{messages.map(msg => {
-          return <ChatMessage key={uuid()} userID={msg.userID} message={msg.message} activeUser={msg.activeUser} />
-        })}</div>
+        <div className="chat__container--messages ">
+          {messages}
+        </div>
         <div id="chat__container--input">
           {socket.userID.length >= 15 && (
             <User userID={socket.userID} />
           )}
           <span className='chat__container--messageText'>MESSAGE:</span>
-          <input id="chat__containter--inputField" ref={el => this.textInput = el} onKeyDown={e => e.key == 'Enter' && this.handleMessageSend()} maxLength="90"/>
+          <input id="chat__containter--inputField" ref={el => this.textInput = el} onKeyDown={e => e.key == 'Enter' && this.handleMessageSend()} maxLength="90" />
           <div
             onClick={this.handleMessageSend}
             id="chat__containter--inputButton"
