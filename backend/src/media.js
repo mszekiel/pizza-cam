@@ -3,14 +3,14 @@ const NodeMediaServer = require('node-media-server');
 const config = {
     logType: 2,
     rtmp: {
-        port: 56665,
+        port: process.env.MEDIA_RTMP_PORT,
         chunk_size: 60000,
         gop_cache: true,
         ping: 30,
         ping_timeout: 60
     },
     http: {
-        port: 8000,
+        port: process.env.MEDIA_HTTP_PORT,
         allow_origin: '*',
         mediaroot: './media'
     },

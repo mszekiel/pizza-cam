@@ -79,7 +79,7 @@ class Chat extends React.Component {
 
   instantiateWebSocket = async () => {
     socket.connect({
-      host: "ws://10.42.3.36:2137", // CHAT HOST
+      host: `ws://${process.env.CHAT_SERVER_ADDRESS}:${process.env.CHAT_SERVER_PORT}`,
       onMessage: this.messageReceived,
     }).then(socket => {
       this.setState({ socket });
@@ -89,20 +89,18 @@ class Chat extends React.Component {
   addNotification = content => {
     this.setState({
       messages: [
-        <ChatNotification content={content} />
+        <ChatNotification key={uuid()} content={content} />
       ].concat(this.state.messages)
     })
   }
 
   messageReceived = message => {
-    console.log(message)
     const { type, content } = message;
     switch (type) {
       case 'MESSAGE':
         this.addMessage(content.message, content.userID);
         break;
       case 'NOTIFICATION':
-        console.log('notify')
         this.addNotification(content);
         break;
       default:

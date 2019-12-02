@@ -9,8 +9,8 @@ app.use(express.static(path.resolve('../frontend/build')));
 
 const bootstrap = (port = 9090) => {
     app.listen(port, () => {
-        console.error(`Server listening on ${port}`);
+        console.error(`[HTTP] Server listening on ${port}`);
     });
 };
 
-export default { bootstrap };
+export default { bootstrap }; 

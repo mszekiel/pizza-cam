@@ -8,7 +8,7 @@ const MESSAGE_TYPE = {
   NOTIFICATION: 'NOTIFICATION'
 }
 
-const start = port => {
+const start = (port = 2137) => {
   const server = new WebSocket.Server({ port });
 
   // UUID MANAGEMENT
