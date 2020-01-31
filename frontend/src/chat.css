@@ -1,10 +1,56 @@
 @import url("https://fonts.googleapis.com/css?family=Bungee&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nanum+Pen+Script&display=swap");
 
 #chat__container {
   display: flex;
   margin: 0 10px;
   flex-direction: column;
   font-family: "Bungee", cursive;
+}
+
+.chat__top {
+  background-color: #ffe9a2;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 5px;
+  font-size: 16pt;
+  font-family: "Nanum Pen Script", cursive;
+  border: 3px solid black;
+}
+
+.chat__top img {
+  margin-top: 5px;
+  padding: 0 2px 0 2px;
+  height: 12pt;
+}
+
+.chat__container--menu {
+  display: flex;
+  background-color: white;
+  padding: 0px 15px;
+  margin: 5px 0;
+  border: 3px solid black;
+}
+.chat__input {
+  position: relative;
+}
+
+.chat__container--menu input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.chat__checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border: 3px solid black;
 }
 
 .chat__container--messages {
@@ -15,10 +61,11 @@
   grid-column: 2;
   overflow-y: auto;
   padding: 5px 0;
+  position: relative;
 }
 
 .chat__container--offline {
-  color: blue;
+  color: black;
   background-image: radial-gradient(currentColor 24%, transparent 25%),
     radial-gradient(currentColor 24%, transparent 25%);
   background-position: 0 0, 0.6rem 0.5rem;
@@ -53,7 +100,7 @@
 .chat__box {
   position: relative;
   border: 3px solid black;
-  padding: 5px 5px 2px 5px;
+  padding: 0px 5px 2px 5px;
   max-width: 75%;
 }
 
@@ -152,6 +199,12 @@
   background-color: gray;
 }
 
+#chat__container--bottom {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+}
+
 #chat__containter--inputButton:active {
   background-color: blue;
   border-bottom: 2px solid black;
@@ -160,12 +213,12 @@
   border-left: 5px solid black;
 }
 
-@media only screen and (max-device-width: 480px),
-  only screen and (min-device-width: 560px) and (max-device-width: 1136px) and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   #chat__container {
     flex-direction: column-reverse;
     margin: 10px 0;
     width: 100%;
+    max-height: 900px;
   }
 
   .chat__container--messages {

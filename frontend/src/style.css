@@ -3,18 +3,50 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: "Bungee", cursive;
 }
 
 #header {
   text-align: center;
   margin: 0;
   padding: 10px 0;
-  font-family: "Bungee", cursive;
 }
 
 #video-player {
   display: flex;
+  z-index: -20;
   align-items: center;
+  border: 3px solid black;
+  color: black;
+  background-image: radial-gradient(currentColor 24%, transparent 25%),
+    radial-gradient(currentColor 24%, transparent 25%);
+  background-position: 0 0, 0.6rem 0.5rem;
+  background-size: 0.6rem 0.6rem;
+  animation: halftone 0.48s steps(3) infinite both paused;
+  pointer-events: auto;
+  animation-play-state: running;
+  position: relative;
+}
+
+#video-player:before {
+  z-index: -10;
+  background-color: white;
+  border: 3px solid black;
+  content: "Stream offline";
+  position: absolute;
+  font-size: 23pt;
+  padding: 4px 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#video-player div {
+  display: flex;
+}
+
+#video-player video {
+  object-fit: fill;
 }
 
 #content {
@@ -23,16 +55,16 @@ body {
   grid-template-rows: calc(100vw / 2 / 1.8);
   margin: 10px;
 }
-@media only screen and (max-device-width: 480px),
-  only screen and (min-device-width: 560px) and (max-device-width: 1136px) and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
   #content {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 100%;
   }
 
   #video-player {
-    width: 100%;
+    width: 98%;
   }
 }
