@@ -152,16 +152,6 @@ class Chat extends React.Component {
     const { socket, messages, online } = this.state;
     return (
       <div id="chat__container">
-        <div className="chat__top">
-          <div className="chat__top--info">
-            Today is my last day in Avid. I would like to thank you for the time
-            spent here, this place is full of great people, I'm glad I met.
-            Thanks to Kasia for her hard work in the Aquarium and organization
-            of all events. Enjoy the pizza!
-            <br />
-            See you someday - Miłosz Szekiel
-          </div>
-        </div>
         <div className="chat__container--menu">
           <div>ONLINE: {online}</div>
         </div>
